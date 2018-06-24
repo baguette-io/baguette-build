@@ -1,0 +1,22 @@
+language: python:3.6
+envs:
+ - PLATFORM: development
+packages:
+ - python
+ - wget
+commands:
+ - ls
+ - echo "none"
+ports:
+ tcp:
+  - 80 : http
+healthchecks:
+ - protocol : http
+   port : 999
+   type : liveness
+   failure_threshold : 5
+   success_threshold : 5
+ - protocol : fake
+   failure_threshold : 5
+   success_threshold : 5
+private: true
