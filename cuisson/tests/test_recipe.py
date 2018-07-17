@@ -45,11 +45,11 @@ def test_generate_definition1(build, valid_recette1):
     assert recipe.definition['branch'] == 'mybranch'
     assert recipe.definition['tag'].endswith('{0}/{1}/{2}:{3}'.format(recipe.definition['owner'], recipe.definition['repo'], recipe.definition['branch'], recipe.definition['uid']).lower())
     assert recipe.definition['namespace'] == '{}-default'.format(recipe.definition['owner'])
-    assert recipe.definition['ports'] == [{'name': 'http', 'protocol':'TCP', 'number':80}]
+    assert recipe.definition['ports'] == [{'name': 'http-80', 'protocol':'TCP', 'number':80}]
     assert recipe.definition['healthchecks'] == []
     assert recipe.definition['private'] == True
     assert recipe.definition['domain_name'] == None
-    assert recipe.definition['ports'] == [{'protocol':'TCP', 'number':80, 'name':'http'}]
+    assert recipe.definition['ports'] == [{'protocol':'TCP', 'number':80, 'name':'http-80'}]
 
 def test_generate_definition2(build, valid_recette2, api_namespace):
     """
@@ -63,11 +63,11 @@ def test_generate_definition2(build, valid_recette2, api_namespace):
     assert recipe.definition['tag'].endswith('{0}/{1}/{2}:{3}'.format(recipe.definition['owner'], recipe.definition['repo'], recipe.definition['branch'], recipe.definition['uid']).lower())
     assert recipe.definition['private'] == False
     assert recipe.definition['domain_name'] == 'mybranch.myrepo.owner.projects.baguette.io'
-    assert recipe.definition['ports'] == [{'protocol':'UDP', 'number':1, 'name':'unknown'}, {'protocol':'TCP', 'number':8000, 'name':'http'}]
+    assert recipe.definition['ports'] == [{'protocol':'UDP', 'number':1, 'name':'udp-1'}, {'protocol':'TCP', 'number':8000, 'name':'tcp-8000'}]
     assert recipe.definition['namespace'] == '{}-experimental'.format(recipe.definition['owner'])
     assert sorted(recipe.definition['ports']) == sorted([
-        {'name': 'http', 'protocol':'TCP', 'number':8000},
-        {'name': 'unknown', 'protocol':'UDP', 'number':1}])
+        {'name': 'tcp-8000', 'protocol':'TCP', 'number':8000},
+        {'name': 'udp-1', 'protocol':'UDP', 'number':1}])
     assert sorted(recipe.definition['healthchecks']) == sorted([
         {'initial_delay_seconds': 3,
          'interval_seconds': 10,

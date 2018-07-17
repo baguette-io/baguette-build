@@ -7,9 +7,8 @@ packages:
 commands:
  - ls
  - echo "none"
-ports:
- tcp:
-  - 8000 : http
+tcp:
+  - 8000
  udp:
   - 1
 healthchecks:
