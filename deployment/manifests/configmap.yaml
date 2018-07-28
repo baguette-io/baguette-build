@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: baguette-build
+  namespace: baguette
+data:
+  config: |
+      [DEFAULT]
+      amqp_uri=<amqp-uri>
+      db_connector=postgres
+      db_name=<db-name>
+      db_user=<db-user>
+      db_password=<db-password>
+      db_host=<db-host>
+
+      [cuisson]
+      git=/home/git/repositories/{0}.{1}.git
+      tmp=/tmp/
+      api_namespace=<api-endpoint>
+      api_token=<api-token>
+      domain_name=<domain-name>
+      registry_domain=<ecr>
+      aws_account_id=<aws-id>
+      aws_ecr_region=<aws-region>
