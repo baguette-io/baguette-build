@@ -18,7 +18,7 @@ LOGGER = logging.getLogger(__name__)
 
 class Recipe(object):
     """
-    Recette structure.
+    baguette.yaml structure.
     """
 
     def __init__(self, path, owner, repo, branch, uid):
@@ -34,7 +34,7 @@ class Recipe(object):
         :type uid: str
         :rtype:None
         """
-        #2. Fetch Recette.yml
+        #2. Fetch baguette.yaml
         self.config = kaptan.Kaptan(handler="yaml")
         self.config.import_config(path)
         self.config = self.config.configuration_data or {}
@@ -45,8 +45,8 @@ class Recipe(object):
 
     def generate_definition(self):
         """
-        Given the Recette.yml, generate the app definition.
-        :returns: Status of the Recette.yml generation
+        Given the baguette.yaml, generate the app definition.
+        :returns: Status of the baguette.yaml generation
         :rtype bool
         """
         registry_uri = farine.settings.cuisson['registry_domain']#pylint:disable=no-member
@@ -105,7 +105,7 @@ class Recipe(object):
         #VPCs
         recette_ns = self.config.get('namespaces', False)
         if recette_ns:
-            # Try to iterate over all the ns=>branch pair of the Recette
+            # Try to iterate over all the ns=>branch pair of the baguette.yaml
             if isinstance(recette_ns, dict):
                 recette_ns = [recette_ns]
             match = False

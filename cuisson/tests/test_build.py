@@ -62,7 +62,7 @@ def test_full_post_receive(queue_factory, rabbitmq, rabbitmq_proc, docker_regist
     def fake_clone(git_uri, base_dir, branch):
         os.makedirs(base_dir)
         path = os.path.join(os.path.dirname(__file__))
-        shutil.copy(os.path.join(path, 'recipes', 'Recette1'), os.path.join(base_dir, 'Recette.yml'))
+        shutil.copy(os.path.join(path, 'recipes', 'Recette1'), os.path.join(base_dir, 'baguette.yaml'))
     with mock.patch('git.Repo.clone_from', mock.MagicMock(side_effect=fake_clone)):
         messages = list(json.loads(m) for m in cuisson.service.Cuisson().post_receive(owner, repo, branch))
         assert messages[-1]['fail'] == False

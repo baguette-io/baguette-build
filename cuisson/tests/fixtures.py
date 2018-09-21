@@ -73,23 +73,23 @@ def buildb2(db_factory):
 def valid_recette1(build):
     """
     Generate a temporary directory
-    containing a dummy valid Recette.
+    containing a dummy valid baguette.yaml.
     :returns: The directory path.
     :rtype: str
     """
     path = os.path.join(os.path.dirname(__file__))
-    shutil.copy(os.path.join(path, 'recipes', 'Recette1'), os.path.join(build.base_dir, 'Recette.yml'))
+    shutil.copy(os.path.join(path, 'recipes', 'Recette1'), os.path.join(build.base_dir, 'baguette.yaml'))
 
 @pytest.fixture
 def valid_recette2(build):
     """
     Generate a temporary directory
-    containing a dummy valid Recette.
+    containing a dummy valid baguette.yaml.
     :returns: The directory path.
     :rtype: str
     """
     path = os.path.join(os.path.dirname(__file__))
-    shutil.copy(os.path.join(path, 'recipes', 'Recette2'), os.path.join(build.base_dir, 'Recette.yml'))
+    shutil.copy(os.path.join(path, 'recipes', 'Recette2'), os.path.join(build.base_dir, 'baguette.yaml'))
 
 @pytest.fixture()
 def build():

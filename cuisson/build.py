@@ -74,12 +74,15 @@ class Build(object):
 
     def get_recipe(self):
         """
-        Retrieve the config file Recette.yml.
+        Retrieve the config file baguette.yml.
         If not present, do not build.
         :returns: If there is a config file or not
         :rtype: bool
         """
-        path = os.path.join(self.base_dir, 'Recette.yml')
+        path = os.path.join(self.base_dir, 'baguette.yml')
+        if os.path.exists(path):
+            return Recipe(path, self.owner, self.repo, self.branch, self.uid)
+        path = os.path.join(self.base_dir, 'baguette.yaml')
         if os.path.exists(path):
             return Recipe(path, self.owner, self.repo, self.branch, self.uid)
         return False
